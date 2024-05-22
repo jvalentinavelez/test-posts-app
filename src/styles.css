@@ -1,8 +1,48 @@
-* {
+/* * {
     font-family: Helvetica, Arial, sans-serif;
     background-color: rgb(234, 234, 234);
-}
+    } */
 
   body {
       padding: 60px;
   }
+
+  /* .editButton {
+      background-color: blue;
+      color: white;
+     border-radius: 5px;
+      margin-right: 5px;
+  }
+
+  .deleteButton {
+      background-color: red;
+      color: white;
+  } */
+
+  .modal {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 400;
+        background-color: white;
+        border: 2px solid #000;
+        box-shadow: 24;
+        padding: 4;
+        border-radius: 10px;
+    }
+
+    .modal-title {
+        font-size: 24px;
+        font-weight: bold;
+    }
+
+    .modal-description {
+        margin-top: 16px;
+    }
+
+    .modal-buttons {
+        margin-top: 16px;
+        display: flex;
+        justify-content: space-between;
+    }
