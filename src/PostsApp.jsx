@@ -9,9 +9,9 @@ export const PostApp = () => {
     const [isLoading, setIsLoading] = useState( true );
     // modal states
     const [modalOpen, setModalOpen] = useState(false);
-    const [modalData, setModalData] = useState({ modalTitle: '', confirmModalAction: null });
-    const [selectedPost, setSelectedPost] = useState(null)
-    const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false); // Nuevo estado
+    const [modalData, setModalData] = useState({ modalTitle: '', confirmModalAction: () => {} });
+    const [selectedPost, setSelectedPost] = useState({})
+    const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false); 
 
 
     const fetchPosts = async() => {
@@ -56,8 +56,12 @@ export const PostApp = () => {
     const openModal = (modalTitle, selectedPost, confirmModalAction) => {
         if (modalTitle === 'Delete Post') { 
             setShowDeleteConfirmation(true);
-            const postToDelete = posts.find(post => post.id === selectedPost);
-            setSelectedPost(postToDelete);
+            if (selectedPost) {
+                const postToDelete = posts.find(post => post.id === selectedPost);
+                setSelectedPost(postToDelete);
+            } else {
+                setSelectedPost({});
+            }
         } else {
             setShowDeleteConfirmation(false);
             setSelectedPost(selectedPost);

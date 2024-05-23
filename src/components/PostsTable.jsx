@@ -84,7 +84,7 @@ export const PostsTable = ( {posts, onAddAction, onEditAction, onDeleteAction} )
     }));
 
     const options = {
-        selectableRows: false,
+        selectableRows: 'none',
         responsive: 'vertical',
         customToolbar: () => (
             <IconButton 

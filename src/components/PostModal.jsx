@@ -23,8 +23,17 @@ export const PostModal = ({ open, handleClose, title, post, handleConfirm, showD
     });
 
   useEffect(() => {
-      setFormPostData(post || { userId: '', id: '', title: '', body: '' });
-  }, [post]);
+  if (post) {
+    setFormPostData({
+      userId: post.userId || '',
+      id: post.id || '',
+      title: post.title || '',
+      body: post.body || ''
+    });
+  } else {
+    setFormPostData({ userId: '', id: '', title: '', body: '' });
+  }
+}, [post]);
 
   const handlePostInput = (event) => {
     const { name, value } = event.target;
@@ -52,7 +61,7 @@ export const PostModal = ({ open, handleClose, title, post, handleConfirm, showD
               <TextField
                 label="User ID"
                 name="userId"
-                value={formPostData.userId || ''}
+                value={formPostData.userId}
                 disabled 
                 fullWidth
               />
@@ -72,7 +81,7 @@ export const PostModal = ({ open, handleClose, title, post, handleConfirm, showD
               <TextField
                 label = "Title"
                 name = "title"
-                value={formPostData.title || ''}
+                value={formPostData.title}
                 onChange={handlePostInput}
                 multiline
                 fullWidth
@@ -83,7 +92,7 @@ export const PostModal = ({ open, handleClose, title, post, handleConfirm, showD
               <TextField
                 label = "Body"
                 name = "body"
-                value={formPostData.body || ''}
+                value={formPostData.body}
                 onChange={handlePostInput}
                 multiline
                 fullWidth
