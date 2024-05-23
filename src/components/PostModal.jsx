@@ -1,5 +1,6 @@
 import { Modal, Box, Typography, Button, TextField, Grid } from '@mui/material';
 import { useEffect, useState } from 'react';
+import { PostForm } from './PostForm';
 
 const style = {
   position: 'absolute',
@@ -13,27 +14,27 @@ const style = {
   borderRadius: '10px'
 };
 
-export const PostModal = ({ open, handleClose, title, post, handleConfirm, showDeleteConfirmation }) => {
+const PostModal = ({ open, handleClose, action, postData, handleConfirmAction, isDeleteSelected }) => {
 
   const [formPostData, setFormPostData] = useState({
-        userId: '',
-        id: '',
-        title: '',
-        body: ''
-    });
+    userId: '',
+    id: '',
+    title: '',
+    body: ''
+  });
 
   useEffect(() => {
-  if (post) {
-    setFormPostData({
-      userId: post.userId || '',
-      id: post.id || '',
-      title: post.title || '',
-      body: post.body || ''
-    });
-  } else {
-    setFormPostData({ userId: '', id: '', title: '', body: '' });
-  }
-}, [post]);
+    if (postData) {
+      setFormPostData({
+        userId: postData.userId || '',
+        id: postData.id || '',
+        title: postData.title || '',
+        body: postData.body || ''
+      });
+    } else {
+      setFormPostData({ userId: '', id: '', title: '', body: '' });
+    }
+  }, [postData]);
 
   const handlePostInput = (event) => {
     const { name, value } = event.target;
@@ -41,7 +42,7 @@ export const PostModal = ({ open, handleClose, title, post, handleConfirm, showD
   };
 
   const handleSubmit = () => {
-    handleConfirm(formPostData);
+    handleConfirmAction(formPostData);
   };
 
   return (
@@ -53,54 +54,14 @@ export const PostModal = ({ open, handleClose, title, post, handleConfirm, showD
     >
       <Box sx={style}>
         <Typography id="modal-title" variant="h6" component="h2">
-          {title}
+          {action}
         </Typography>
-        <form noValidate autoComplete="off">
-          <Grid container spacing={2}>
-            <Grid item xs={ 6 } sx={{ mt: 2}}>
-              <TextField
-                label="User ID"
-                name="userId"
-                value={formPostData.userId}
-                disabled 
-                fullWidth
-              />
-            </Grid>
-            {title !== 'Create Post' &&( 
-              <Grid item xs={ 6 } sx={{ mt: 2 }}>
-                <TextField
-                  label="id"
-                  name="id"
-                  value={formPostData.id}
-                  disabled 
-                  fullWidth
-                />
-              </Grid> 
-             )}
-            <Grid item xs={ 12 } sx={{ mt: 2 }}>
-              <TextField
-                label = "Title"
-                name = "title"
-                value={formPostData.title}
-                onChange={handlePostInput}
-                multiline
-                fullWidth
-                disabled={showDeleteConfirmation}
-              />
-            </Grid>
-            <Grid item xs={ 12 } sx={{ mt: 2 }}>
-              <TextField
-                label = "Body"
-                name = "body"
-                value={formPostData.body}
-                onChange={handlePostInput}
-                multiline
-                fullWidth
-                disabled={showDeleteConfirmation}
-              />
-            </Grid>
-          </Grid>
-        </form>
+        <PostForm 
+          title = {action}
+          postData = {formPostData}
+          handleInputChange = {handlePostInput}
+          isDeleteSelected = {isDeleteSelected}
+        />
         <Box mt={2} display="flex" justifyContent="space-between">
           <Button color="primary" onClick={handleSubmit}>
             Confirm
@@ -113,3 +74,5 @@ export const PostModal = ({ open, handleClose, title, post, handleConfirm, showD
     </Modal>
   );
 };
+
+export default PostModal

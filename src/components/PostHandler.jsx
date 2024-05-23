@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 import { getPosts, editPost, deletePost, createPost } from "../services/api"
 import { PostsTable, PostModal } from "./";
 
-export const PostApp = () => {
+const PostHandler = () => {
 
     //posts states
     const [posts, setPosts] = useState([]);
@@ -11,7 +11,7 @@ export const PostApp = () => {
     const [modalOpen, setModalOpen] = useState(false);
     const [modalData, setModalData] = useState({ modalTitle: '', confirmModalAction: () => {} });
     const [selectedPost, setSelectedPost] = useState({})
-    const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false); 
+    const [isDeleteSelected, setDeleteSelected] = useState(false); 
 
     useEffect( () => {
         const fetchPosts = async() => {
@@ -53,7 +53,7 @@ export const PostApp = () => {
 
     const openModal = (modalTitle, selectedPost, confirmModalAction) => {
         if (modalTitle === 'Delete Post') { 
-            setShowDeleteConfirmation(true);
+            setDeleteSelected(true);
             if (selectedPost) {
                 const postToDelete = posts.find(post => post.id === selectedPost);
                 setSelectedPost(postToDelete);
@@ -61,7 +61,7 @@ export const PostApp = () => {
                 setSelectedPost({});
             }
         } else {
-            setShowDeleteConfirmation(false);
+            setDeleteSelected(false);
             setSelectedPost(selectedPost);
         }
         setModalData({ modalTitle, confirmModalAction });
@@ -92,13 +92,15 @@ export const PostApp = () => {
             />
             <PostModal 
                 open = {modalOpen} 
-                title = {modalData.modalTitle} 
-                post = {selectedPost}
-                handleConfirm = {handleConfirmModal}
+                action = {modalData.modalTitle} 
+                postData = {selectedPost}
+                handleConfirmAction = {handleConfirmModal}
                 handleClose = {() => setModalOpen(false)} 
-                showDeleteConfirmation={showDeleteConfirmation} 
+                isDeleteSelected={isDeleteSelected} 
             />
         </>
     )
 
 }
+
+export default PostHandler;
