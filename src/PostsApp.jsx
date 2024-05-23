@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
-import { getPosts, editPost, deletePost } from "./helpers/api"
+import { getPosts, editPost, deletePost, createPost } from "./helpers/api"
 import { PostsTable, PostModal } from "./components/index";
 
 export const PostApp = () => {
@@ -23,6 +23,15 @@ export const PostApp = () => {
     useEffect( () => {
         fetchPosts();
     }, []);
+
+    const handleAddPost = useCallback( async (newPost) => {
+        try {
+            const addedPost = await createPost(newPost);
+            setPosts(prevPosts => [...prevPosts, addedPost]);
+        } catch (error) {
+            console.error('There was an error creating post: ', error);
+        }
+    }, [setPosts]);
 
     const handleEditPost = useCallback(async (postId, updatedData) => {
         try {
@@ -57,8 +66,10 @@ export const PostApp = () => {
         setModalOpen(true);
     };
 
-    const handleConfirmModal = (updatedData) => {
-        if (modalData.confirmModalAction) {
+    const handleConfirmModal = (updatedData) => {   
+        if (modalData.confirmModalAction === handleAddPost) {
+            modalData.confirmModalAction(updatedData);
+        } else {
             modalData.confirmModalAction(selectedPost.id, updatedData);
         }
         setModalOpen(false);
@@ -73,6 +84,7 @@ export const PostApp = () => {
         <>
             <PostsTable 
                 posts = {posts}
+                onAddAction={() => openModal('Create Post', { userId: 1, title: '', body: '' }, handleAddPost)}
                 onEditAction = {(post) => openModal('Edit Post', post, handleEditPost)}
                 onDeleteAction = {(postId) => openModal('Delete Post', postId, handleDeletePost)} 
             />

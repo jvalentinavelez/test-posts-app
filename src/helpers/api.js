@@ -27,12 +27,13 @@ export const createPost = async(postData) => {
         const response = await fetch(`${baseUrl}/posts`, {
             method: 'POST',
             headers: {
-                'Content-type': 'application/json;',
+                'Content-type': 'application/json; charset=UTF-8',
             },
             body: JSON.stringify(postData)
             
         })
         const data = await response.json();
+        console.log(data)
         return data;
     } catch (error) {
         console.log('There was an error creating the post: ', error);

@@ -2,11 +2,11 @@ import MUIDataTable from "mui-datatables";
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
+import AddIcon from '@mui/icons-material/Add';
 
-export const PostsTable = ( {posts, onEditAction, onDeleteAction} ) => {
+export const PostsTable = ( {posts, onAddAction, onEditAction, onDeleteAction} ) => {
 
     const columns = [
-
         {
             name: "userId",
             label: "Userid",
@@ -85,7 +85,19 @@ export const PostsTable = ( {posts, onEditAction, onDeleteAction} ) => {
 
     const options = {
         selectableRows: false,
-        responsive: 'vertical'
+        responsive: 'vertical',
+        customToolbar: () => (
+            <IconButton 
+                color="primary" 
+                aria-label="edit" 
+                onClick={ () => {
+                        onAddAction()
+                    }                           
+                }
+            >
+                <AddIcon />
+            </IconButton> 
+        ),
     };
 
     return (

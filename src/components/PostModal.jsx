@@ -15,8 +15,6 @@ const style = {
 
 export const PostModal = ({ open, handleClose, title, post, handleConfirm, showDeleteConfirmation }) => {
 
-  console.log(title)
-
   const [formPostData, setFormPostData] = useState({
         userId: '',
         id: '',
@@ -25,9 +23,7 @@ export const PostModal = ({ open, handleClose, title, post, handleConfirm, showD
     });
 
   useEffect(() => {
-    if (post) {
-      setFormPostData(post);
-    }
+      setFormPostData(post || { userId: '', id: '', title: '', body: '' });
   }, [post]);
 
   const handlePostInput = (event) => {
@@ -38,7 +34,6 @@ export const PostModal = ({ open, handleClose, title, post, handleConfirm, showD
   const handleSubmit = () => {
     handleConfirm(formPostData);
   };
-
 
   return (
     <Modal
@@ -57,25 +52,27 @@ export const PostModal = ({ open, handleClose, title, post, handleConfirm, showD
               <TextField
                 label="User ID"
                 name="userId"
-                value={formPostData.userId}
+                value={formPostData.userId || ''}
                 disabled 
                 fullWidth
               />
             </Grid>
-            <Grid item xs={ 6 } sx={{ mt: 2 }}>
-              <TextField
-                label="id"
-                name="id"
-                value={formPostData.id}
-                disabled 
-                fullWidth
-              />
-            </Grid>
+            {title !== 'Create Post' &&( 
+              <Grid item xs={ 6 } sx={{ mt: 2 }}>
+                <TextField
+                  label="id"
+                  name="id"
+                  value={formPostData.id}
+                  disabled 
+                  fullWidth
+                />
+              </Grid> 
+             )}
             <Grid item xs={ 12 } sx={{ mt: 2 }}>
               <TextField
                 label = "Title"
                 name = "title"
-                value={formPostData.title}
+                value={formPostData.title || ''}
                 onChange={handlePostInput}
                 multiline
                 fullWidth
@@ -86,7 +83,7 @@ export const PostModal = ({ open, handleClose, title, post, handleConfirm, showD
               <TextField
                 label = "Body"
                 name = "body"
-                value={formPostData.body}
+                value={formPostData.body || ''}
                 onChange={handlePostInput}
                 multiline
                 fullWidth
