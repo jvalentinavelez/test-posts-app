@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
-import { getPosts, editPost, deletePost, createPost } from "./helpers/api"
+import { getPosts, editPost, deletePost, createPost } from "./services/api"
 import { PostsTable, PostModal } from "./components/index";
 
 export const PostApp = () => {
