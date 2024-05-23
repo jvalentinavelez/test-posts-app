@@ -116,7 +116,7 @@ const PostsTable = ( {posts, onAddAction, onEditAction, onDeleteAction} ) => {
 }
 
 PostsTable.propTypes = {
-    posts: propTypes.array.isRequired,
+    posts: PropTypes.array.isRequired,
     onAddAction: PropTypes.func.isRequired,
     onEditAction: PropTypes.func.isRequired,
     onDeleteAction: PropTypes.func.isRequired

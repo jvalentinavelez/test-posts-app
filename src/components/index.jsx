@@ -1,3 +1,6 @@
 export { PostModal } from "./PostModal";
 
-export { PostsTable }  from "./PostsTable";
+export { default as PostsTable }  from "./PostsTable";
+
+export { PostHandler }  from "./PostHandler";
+

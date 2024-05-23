@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
-import { getPosts, editPost, deletePost, createPost } from "./services/api"
-import { PostsTable, PostModal } from "./components/index";
+import { getPosts, editPost, deletePost, createPost } from "../services/api"
+import { PostsTable, PostModal } from "./";
 
 export const PostApp = () => {
 
@@ -13,14 +13,12 @@ export const PostApp = () => {
     const [selectedPost, setSelectedPost] = useState({})
     const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false); 
 
-
-    const fetchPosts = async() => {
-        const posts = await getPosts();
-        setPosts(posts);
-        setIsLoading(false);
-    }
-
     useEffect( () => {
+        const fetchPosts = async() => {
+            const posts = await getPosts();
+            setPosts(posts);
+            setIsLoading(false);
+        }
         fetchPosts();
     }, []);
 
@@ -43,7 +41,7 @@ export const PostApp = () => {
         }
     }, [posts]);
 
-    const handleDeletePost = async (postId) => {
+    const handleDeletePost =  async (postId) => {
         try {
             await deletePost(postId);
             const updatedPosts = posts.filter(post => post.id !== postId);
