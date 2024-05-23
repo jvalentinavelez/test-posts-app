@@ -1,10 +1,10 @@
-import { PostHandler } from "./components";
+import { PostsHandler } from "./components";
 
 export const App = () => {
 
     return (
         <>
-            <PostHandler />
+            <PostsHandler />
         </>
     )
 
