@@ -13,13 +13,20 @@ const style = {
   borderRadius: '10px'
 };
 
-export const PostModal = ({ open, handleClose, title, post, handleConfirm }) => {
+export const PostModal = ({ open, handleClose, title, post, handleConfirm, showDeleteConfirmation }) => {
 
-  const [formPostData, setFormPostData] = useState({ title: '', body: '' });
+  console.log(title)
+
+  const [formPostData, setFormPostData] = useState({
+        userId: '',
+        id: '',
+        title: '',
+        body: ''
+    });
 
   useEffect(() => {
     if (post) {
-      setFormPostData({ ...post });
+      setFormPostData(post);
     }
   }, [post]);
 
@@ -29,7 +36,7 @@ export const PostModal = ({ open, handleClose, title, post, handleConfirm }) => 
   };
 
   const handleSubmit = () => {
-    handleConfirm(post.id, formPostData);
+    handleConfirm(formPostData);
   };
 
 
@@ -45,36 +52,47 @@ export const PostModal = ({ open, handleClose, title, post, handleConfirm }) => 
           {title}
         </Typography>
         <form noValidate autoComplete="off">
-          <Grid container>
+          <Grid container spacing={2}>
+            <Grid item xs={ 6 } sx={{ mt: 2}}>
+              <TextField
+                label="User ID"
+                name="userId"
+                value={formPostData.userId}
+                disabled 
+                fullWidth
+              />
+            </Grid>
+            <Grid item xs={ 6 } sx={{ mt: 2 }}>
+              <TextField
+                label="id"
+                name="id"
+                value={formPostData.id}
+                disabled 
+                fullWidth
+              />
+            </Grid>
             <Grid item xs={ 12 } sx={{ mt: 2 }}>
-                <TextField
-                  label="User ID"
-                  name="userId"
-                  value={formPostData.userId}
-                  disabled 
-                  fullWidth
-                />
-              </Grid>
-              <Grid item xs={ 12 } sx={{ mt: 2 }}>
-                <TextField
-                  label = "Title"
-                  name = "title"
-                  value={formPostData.title}
-                  onChange={handlePostInput}
-                  multiline
-                  fullWidth
-                />
-              </Grid>
-              <Grid item xs={ 12 } sx={{ mt: 2 }}>
-                <TextField
-                  label = "Body"
-                  name = "body"
-                  value={formPostData.body}
-                  onChange={handlePostInput}
-                  multiline
-                  fullWidth
-                />
-              </Grid>
+              <TextField
+                label = "Title"
+                name = "title"
+                value={formPostData.title}
+                onChange={handlePostInput}
+                multiline
+                fullWidth
+                disabled={showDeleteConfirmation}
+              />
+            </Grid>
+            <Grid item xs={ 12 } sx={{ mt: 2 }}>
+              <TextField
+                label = "Body"
+                name = "body"
+                value={formPostData.body}
+                onChange={handlePostInput}
+                multiline
+                fullWidth
+                disabled={showDeleteConfirmation}
+              />
+            </Grid>
           </Grid>
         </form>
         <Box mt={2} display="flex" justifyContent="space-between">

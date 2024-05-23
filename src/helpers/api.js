@@ -27,7 +27,7 @@ export const createPost = async(postData) => {
         const response = await fetch(`${baseUrl}/posts`, {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json',
+                'Content-type': 'application/json;',
             },
             body: JSON.stringify(postData)
             
@@ -45,7 +45,7 @@ export const editPost = async(postId, postData) => {
         const response = await fetch(`${baseUrl}/posts/${postId}`, {
             method: 'PUT',
             headers: {
-                'Content-Type': 'application/json',
+                'Content-Type': 'application/json; charset=UTF-8',
             },
             body: JSON.stringify(postData)
             

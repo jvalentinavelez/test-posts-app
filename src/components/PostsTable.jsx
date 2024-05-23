@@ -3,7 +3,7 @@ import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 
-export const PostsTable = ( {posts, onEditPost} ) => {
+export const PostsTable = ( {posts, onEditAction, onDeleteAction} ) => {
 
     const columns = [
 
@@ -47,7 +47,7 @@ export const PostsTable = ( {posts, onEditPost} ) => {
             filter: false,
             sort: false,
             empty: true,
-            customBodyRender: (value, tableMeta, updateValue) => {
+            customBodyRender: (value, tableMeta) => {
                 const postId = tableMeta.rowData[1];
                 const post = posts.find(post => post.id === postId)
                 return (
@@ -56,31 +56,24 @@ export const PostsTable = ( {posts, onEditPost} ) => {
                             color="primary" 
                             aria-label="edit" 
                             onClick={ () => {
-                                onEditPost(post)
-                            }                           
+                                onEditAction(post)
+                                }                           
                             }>
                             <EditIcon />
                         </IconButton> 
+                        <IconButton 
+                            aria-label="delete" 
+                            onClick={ () => {
+                                onDeleteAction(postId)
+                                }
+                            }>
+                            <DeleteIcon />
+                        </IconButton>
                     </>               
                 );
             }
             }
-        },
-        {
-            name: "Delete",
-            options: {
-            filter: false,
-            sort: false,
-            empty: true,
-            customBodyRenderLite: (dataIndex, rowIndex) => {
-                return (
-                    <IconButton aria-label="delete" onClick={() => window.alert(`Clicked "Delete" for row ${rowIndex} with dataIndex of ${dataIndex}`)}>
-                        <DeleteIcon />
-                    </IconButton>
-                );
-            }
-            }
-        },
+        }
     ]
 
     const tableData = posts.map(post => ({
