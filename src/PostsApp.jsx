@@ -54,7 +54,6 @@ export const PostApp = () => {
             setSelectedPost(selectedPost);
         }
         setModalData({ modalTitle, confirmModalAction });
-        console.log(modalData)
         setModalOpen(true);
     };
 
@@ -79,7 +78,7 @@ export const PostApp = () => {
             />
             <PostModal 
                 open = {modalOpen} 
-                title = {modalData.title} 
+                title = {modalData.modalTitle} 
                 post = {selectedPost}
                 handleConfirm = {handleConfirmModal}
                 handleClose = {() => setModalOpen(false)} 
