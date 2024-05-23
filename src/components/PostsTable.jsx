@@ -3,8 +3,10 @@ import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import AddIcon from '@mui/icons-material/Add';
+import PropTypes from 'prop-types'
 
-export const PostsTable = ( {posts, onAddAction, onEditAction, onDeleteAction} ) => {
+
+const PostsTable = ( {posts, onAddAction, onEditAction, onDeleteAction} ) => {
 
     const columns = [
         {
@@ -112,3 +114,12 @@ export const PostsTable = ( {posts, onAddAction, onEditAction, onDeleteAction} )
     )
 
 }
+
+PostsTable.propTypes = {
+    posts: propTypes.array.isRequired,
+    onAddAction: PropTypes.func.isRequired,
+    onEditAction: PropTypes.func.isRequired,
+    onDeleteAction: PropTypes.func.isRequired
+}
+
+export default PostsTable

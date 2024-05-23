@@ -10,7 +10,16 @@ Follow the next steps to set up the project
    ```sh
    npm install
    ```
-3. Install MUI-Datatables
+3. Install mui v5 and it's icon pack and Install MUI-Datatables
+
    ```sh
+   npm --save install @mui/material @emotion/react @emotion/styled @mui/icons-material
    npm install mui-datatables --save
+
+   ```
+
+4. Install prop-types for type checking
+
+   ```sh
+   npm install --save prop-types
    ```
