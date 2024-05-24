@@ -1,5 +1,7 @@
 # PRGX - Frontend Technical Test
 
+## Public URL
+
 ## Installation
 
 Follow the next steps to set up the project

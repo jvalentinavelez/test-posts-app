@@ -14,7 +14,12 @@ export const PostsTableColumns = ({posts, onEditAction, onDeleteAction}) => {
             options: {
                 filter: true,
                 sort: true,
-                editable: true
+                editable: true,
+                customBodyRender: (value, tableMeta, updateValue) => {
+                    return (
+                        <div style={{ textAlign: 'center' }}>{value}</div>
+                    );
+                }
             }
         },
         {   
@@ -23,13 +28,18 @@ export const PostsTableColumns = ({posts, onEditAction, onDeleteAction}) => {
             options: {
                 filter: true,
                 sort: true,
+                customBodyRender: (value, tableMeta, updateValue) => {
+                    return (
+                        <div style={{ textAlign: 'center' }}>{value}</div>
+                    );
+                }
             }
         },
         {   
             name: "title",
             label: "Title",
             options: {
-                filter: true,
+                filter: false,
                 sort: false,
             }
         },
@@ -37,7 +47,7 @@ export const PostsTableColumns = ({posts, onEditAction, onDeleteAction}) => {
             name: "body",
             label: "Body",
             options: {
-                filter: true,
+                filter: false,
                 sort: false,
             }
         },
@@ -53,7 +63,6 @@ export const PostsTableColumns = ({posts, onEditAction, onDeleteAction}) => {
                     return (
                         <>
                             <IconButton 
-                                color="primary" 
                                 aria-label="edit" 
                                 onClick={ () => {
                                     onEditAction(post)

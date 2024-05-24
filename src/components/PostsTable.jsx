@@ -1,15 +1,15 @@
 import MUIDataTable from "mui-datatables";
 import IconButton from '@mui/material/IconButton';
 import AddIcon from '@mui/icons-material/Add';
-import PropTypes from 'prop-types'
 import { PostsTableColumns } from "./PostsTableColumns";
 import { usePosts } from '../context/PostsContext';
 import { PostModal } from "./PostModal";
 import useModal from "../hooks/useModal";
+import { ThemeProvider, createTheme } from "@mui/material";
 
 export const PostsTable = ( ) => {
 
-      const {
+    const {
         posts,
         handleAddPost,
         handleEditPost,
@@ -27,11 +27,13 @@ export const PostsTable = ( ) => {
     }));
 
     const options = {
+        print: false,
+        fixedHeader: true,
         selectableRows: 'none',
-        responsive: 'vertical',
+        responsive: 'simple',
+        rowsPerPageOptions: [10, 20, 50, 100],
         customToolbar: () => (
             <IconButton 
-                color="primary" 
                 aria-label="edit" 
                 onClick={ 
                         () => openModal('Create Post', { userId: 1, title: '', body: '' }, handleAddPost)                         
@@ -41,6 +43,58 @@ export const PostsTable = ( ) => {
             </IconButton> 
         ),
     };
+
+    const theme = createTheme({
+        palette: {
+            secondary: {
+                main: '#1F618D', 
+            },
+        },
+        typography: {
+            fontFamily: 'Montserrat, sans-serif',
+            fontSize: 15,
+        },
+        components: {
+            MuiTypography: {
+                styleOverrides: {
+                    h6: {
+                        fontFamily: 'Montserrat, sans-serif', 
+                        fontSize: 24,
+                        fontWeight: 300
+                    },
+                },
+            },
+            MuiToolbar: {
+                styleOverrides:{
+                    root: {
+                        backgroundColor: "#A9CCE3",                    
+                    }
+                }
+            }, 
+            MuiPaper: {
+                styleOverrides: {
+                    root: {
+                        backgroundColor: '#D4E6F1',
+                    },
+                },   
+            },
+            MUIDataTableHeadCell: {
+                styleOverrides: {
+                    fixedHeader: { backgroundColor: "transparent" },
+                    root: {
+                        textAlign: 'center',
+                    },
+                },
+            },
+            MuiTableFooter: {
+                styleOverrides:{
+                root: {
+                    backgroundColor: "#A9CCE3"
+                }
+                }
+            }, 
+        },     
+    });
 
     const columns = PostsTableColumns(
         { 
@@ -52,12 +106,14 @@ export const PostsTable = ( ) => {
 
     return (
         <>
-            <MUIDataTable
-                title={"Users Posts"}
-                columns={columns}
-                data={tableData}
-                options={options}
-            />
+            <ThemeProvider theme={theme}>
+                <MUIDataTable
+                    title={"Users Posts"}
+                    columns={columns}
+                    data={tableData}
+                    options={options}
+                />
+            </ThemeProvider>
             <PostModal 
                 open = {modalOpen} 
                 action = {modalData.modalTitle} 
