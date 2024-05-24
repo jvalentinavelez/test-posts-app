@@ -1,5 +1,19 @@
 # PRGX - Frontend Technical Test
 
+# Posts App
+
+Welcome to the Posts App, an application designed to help you manage users posts.
+
+## Features
+
+You can perform actions on a post. Each action will display a modal, which will either send the information when Confirm is pressed or cancel the action when Cancel is pressed.
+
+- **Add Post:** In the table header, you'll find a button to add a post. By default, the userId will be 1. You can write a title and a body. A new record will be generated with a new id.
+- **Edit Post:** With the pencil icon, you can edit the content of the user's post. You can edit the title and the body fields.
+- **Delete Post:** With the trash icon, you can delete the content of the user's post.
+
+Additionally, you can search an specific post, filter by userId and Id columns, display the columns of interest, and view the number of pages at the bottom and customize it to your liking.
+
 ## Public URL
 
 ## Installation
