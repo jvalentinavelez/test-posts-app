@@ -6,8 +6,8 @@ const useModal = () => {
   const { posts, handleAddPost } = usePosts(); 
 
   const [modalOpen, setModalOpen] = useState(false);
-  const [selectedPost, setSelectedPost] = useState(null);
-  const [modalData, setModalData] = useState({ modalTitle: '', confirmModalAction: null });
+  const [selectedPost, setSelectedPost] = useState({});
+  const [modalData, setModalData] = useState({ modalTitle: '', confirmModalAction: {} });
   const [isDeleteSelected, setDeleteSelected] = useState(false);
 
   const openModal = (modalTitle, selectedPost, confirmModalAction) => {
