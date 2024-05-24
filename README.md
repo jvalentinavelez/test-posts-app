@@ -17,9 +17,7 @@ You can perform actions on a post. Each action will display a modal, which will 
 
 - **Edit Post:** With the pencil icon, you can edit the content of the user's post. You can edit the title and the body fields.
 
-
 <img src="https://github.com/jvalentinavelez/test-posts-app/assets/55290812/ed5f89b4-0777-478c-82c9-b197e8c21fdd" width="500">
-
 
 - **Delete Post:** With the trash icon, you can delete the content of the user's post.
 
@@ -51,6 +49,12 @@ Follow the next steps to set up the project
 
    ```sh
    npm install --save prop-types
+   ```
+
+5. Execute the project
+
+   ```sh
+   npm run dev
    ```
 
 ## Testing with Jest + React Testing Library
