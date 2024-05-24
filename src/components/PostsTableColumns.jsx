@@ -37,7 +37,7 @@ export const PostsTableColumns = ({posts, onEditAction, onDeleteAction}) => {
         },
         {   
             name: "title",
-            label: "Title",
+            label: "TITLE",
             options: {
                 filter: false,
                 sort: false,
@@ -45,7 +45,7 @@ export const PostsTableColumns = ({posts, onEditAction, onDeleteAction}) => {
         },
         {   
             name: "body",
-            label: "Body",
+            label: "BODY",
             options: {
                 filter: false,
                 sort: false,
@@ -53,7 +53,8 @@ export const PostsTableColumns = ({posts, onEditAction, onDeleteAction}) => {
         },
         {
             name: "Actions",
-                options: {
+            label: "ACTIONS",
+            options: {
                 filter: false,
                 sort: false,
                 empty: true,

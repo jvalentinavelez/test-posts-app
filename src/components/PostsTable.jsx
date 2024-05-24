@@ -28,6 +28,7 @@ export const PostsTable = ( ) => {
 
     const options = {
         print: false,
+        download: false,
         fixedHeader: true,
         selectableRows: 'none',
         responsive: 'simple',
