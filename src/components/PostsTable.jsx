@@ -70,10 +70,3 @@ export const PostsTable = ( ) => {
     )
 
 }
-
-// PostsTable.propTypes = {
-//     posts: PropTypes.array.isRequired,
-//     onAddAction: PropTypes.func.isRequired,
-//     onEditAction: PropTypes.func.isRequired,
-//     onDeleteAction: PropTypes.func.isRequired
-// }

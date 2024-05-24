@@ -1,6 +1,8 @@
 import { Modal, Box, Typography, Button, TextField, Grid } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { PostForm } from './PostForm';
+import PropTypes from 'prop-types';
+
 
 const style = {
   position: 'absolute',
@@ -75,3 +77,16 @@ export const PostModal = ({ open, handleClose, action, postData, handleConfirmAc
   );
 };
 
+PostModal.propTypes = {
+  open: PropTypes.bool.isRequired,
+  handleClose: PropTypes.func.isRequired,
+  action: PropTypes.string.isRequired,
+  postData: PropTypes.shape({
+    userId: PropTypes.number,
+    id: PropTypes.number,
+    title: PropTypes.string,
+    body: PropTypes.string,
+  }).isRequired,
+  handleConfirmAction: PropTypes.func.isRequired,
+  isDeleteSelected: PropTypes.bool.isRequired,
+};

@@ -23,3 +23,10 @@ Follow the next steps to set up the project
    ```sh
    npm install --save prop-types
    ```
+
+5. Testing with Jest + React Testing Library
+
+   ```sh
+   npm install --save-dev jest babel-jest @babel/preset-env @babel/preset-react
+   npm install --save-dev @testing-library/react @types/jest jest-environment-jsdom
+   ```
