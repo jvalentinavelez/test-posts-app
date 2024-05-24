@@ -1,5 +1,5 @@
 import MUIDataTable from "mui-datatables";
-import { ThemeProvider, createTheme } from "@mui/material";
+import { CircularProgress, ThemeProvider, createTheme } from "@mui/material";
 import IconButton from '@mui/material/IconButton';
 import AddIcon from '@mui/icons-material/Add';
 
@@ -15,7 +15,8 @@ export const PostsTable = ( ) => {
         posts,
         handleAddPost,
         handleEditPost,
-        handleDeletePost,        
+        handleDeletePost,
+        isLoading        
     } = usePosts();
 
     const { 
@@ -114,6 +115,11 @@ export const PostsTable = ( ) => {
             onDeleteAction : (postId) => openModal('Delete Post', postId, handleDeletePost)
         }
     )
+
+    if (isLoading) {
+        return (<CircularProgress />
+        )
+    }
 
     return (
         <>
