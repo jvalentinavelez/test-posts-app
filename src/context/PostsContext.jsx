@@ -6,7 +6,7 @@ const PostsContext = createContext();
 export const usePosts = () => useContext(PostsContext);
 
 export const PostsProvider = ({ children }) => {
-    //posts states
+
     const [posts, setPosts] = useState([]);
     const [isLoading, setIsLoading] = useState( true );
 
@@ -49,33 +49,6 @@ export const PostsProvider = ({ children }) => {
         }
     };
 
-    // const openModal = (modalTitle, selectedPost, confirmModalAction) => {
-    //     if (modalTitle === 'Delete Post') { 
-    //         setDeleteSelected(true);
-    //         if (selectedPost) {
-    //             const postToDelete = posts.find(post => post.id === selectedPost);
-    //             setSelectedPost(postToDelete);
-    //         } else {
-    //             setSelectedPost({});
-    //         }
-    //     } else {
-    //         setDeleteSelected(false);
-    //         setSelectedPost(selectedPost);
-    //     }
-    //     setModalData({ modalTitle, confirmModalAction });
-    //     setModalOpen(true);
-    // };
-
-
-    // const handleConfirmModal = (updatedData) => {   
-    //     if (modalData.confirmModalAction === handleAddPost) {
-    //         modalData.confirmModalAction(updatedData);
-    //     } else {
-    //         modalData.confirmModalAction(selectedPost.id, updatedData);
-    //     }
-    //     setModalOpen(false);
-    // };
-
   return (
     <PostsContext.Provider value={{
         posts,
@@ -83,13 +56,6 @@ export const PostsProvider = ({ children }) => {
         handleAddPost,
         handleEditPost,
         handleDeletePost,
-        // selectedPost,        
-        // modalOpen,
-        // setModalOpen,
-        // openModal,
-        // modalData,
-        // isDeleteSelected,
-        // handleConfirmModal
     }}>
       {children}
     </PostsContext.Provider>

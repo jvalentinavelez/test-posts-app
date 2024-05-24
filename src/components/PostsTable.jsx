@@ -4,8 +4,8 @@ import AddIcon from '@mui/icons-material/Add';
 import PropTypes from 'prop-types'
 import { PostsTableColumns } from "./PostsTableColumns";
 import { usePosts } from '../context/PostsContext';
-import { useModal } from '../context/ModalContext';
 import PostModal from "./PostModal";
+import useModal from "../hooks/useModal";
 
 const PostsTable = ( ) => {
 
