@@ -1,16 +1,18 @@
-import { useCallback, useEffect, useState } from "react";
-import { getPosts, editPost, deletePost, createPost } from "../services/api"
-import { PostsTable, PostModal } from ".";
+import { useState, useCallback, useContext, useEffect, createContext } from 'react';
+import { createPost, editPost, deletePost, getPosts } from '../services/api.js';
 
-const PostHandler = () => {
+const PostsContext = createContext();
 
+export const usePosts = () => useContext(PostsContext);
+
+export const PostsProvider = ({ children }) => {
     //posts states
     const [posts, setPosts] = useState([]);
+    const [selectedPost, setSelectedPost] = useState({})
     const [isLoading, setIsLoading] = useState( true );
     // modal states
     const [modalOpen, setModalOpen] = useState(false);
     const [modalData, setModalData] = useState({ modalTitle: '', confirmModalAction: () => {} });
-    const [selectedPost, setSelectedPost] = useState({})
     const [isDeleteSelected, setDeleteSelected] = useState(false); 
 
     useEffect( () => {
@@ -68,6 +70,7 @@ const PostHandler = () => {
         setModalOpen(true);
     };
 
+
     const handleConfirmModal = (updatedData) => {   
         if (modalData.confirmModalAction === handleAddPost) {
             modalData.confirmModalAction(updatedData);
@@ -77,30 +80,22 @@ const PostHandler = () => {
         setModalOpen(false);
     };
 
-    if (isLoading) {
-
-        return <div>Loading...</div>;
-    }
-
-    return (
-        <>
-            <PostsTable 
-                posts = {posts}
-                onAddAction={() => openModal('Create Post', { userId: 1, title: '', body: '' }, handleAddPost)}
-                onEditAction = {(post) => openModal('Edit Post', post, handleEditPost)}
-                onDeleteAction = {(postId) => openModal('Delete Post', postId, handleDeletePost)} 
-            />
-            <PostModal 
-                open = {modalOpen} 
-                action = {modalData.modalTitle} 
-                postData = {selectedPost}
-                handleConfirmAction = {handleConfirmModal}
-                handleClose = {() => setModalOpen(false)} 
-                isDeleteSelected={isDeleteSelected} 
-            />
-        </>
-    )
-
-}
-
-export default PostHandler;
+  return (
+    <PostsContext.Provider value={{
+        posts,
+        isLoading,
+        selectedPost,
+        handleAddPost,
+        handleEditPost,
+        handleDeletePost,        
+        modalOpen,
+        setModalOpen,
+        openModal,
+        modalData,
+        isDeleteSelected,
+        handleConfirmModal
+    }}>
+      {children}
+    </PostsContext.Provider>
+  );
+};

@@ -3,9 +3,24 @@ import IconButton from '@mui/material/IconButton';
 import AddIcon from '@mui/icons-material/Add';
 import PropTypes from 'prop-types'
 import { PostsTableColumns } from "./PostsTableColumns";
+import { usePosts } from '../hooks/PostsContext';
+import PostModal from "./PostModal";
 
+const PostsTable = ( ) => {
 
-const PostsTable = ( {posts, onAddAction, onEditAction, onDeleteAction} ) => {
+      const {
+        posts,
+        selectedPost,
+        handleAddPost,
+        handleEditPost,
+        handleDeletePost,        
+        modalOpen,
+        setModalOpen,
+        openModal,
+        modalData,
+        isDeleteSelected,
+        handleConfirmModal
+    } = usePosts();
 
     const tableData = posts.map(post => ({
         userId: post.userId, 
@@ -21,9 +36,8 @@ const PostsTable = ( {posts, onAddAction, onEditAction, onDeleteAction} ) => {
             <IconButton 
                 color="primary" 
                 aria-label="edit" 
-                onClick={ () => {
-                        onAddAction()
-                    }                           
+                onClick={ 
+                        () => openModal('Create Post', { userId: 1, title: '', body: '' }, handleAddPost)                         
                 }
             >
                 <AddIcon />
@@ -34,8 +48,8 @@ const PostsTable = ( {posts, onAddAction, onEditAction, onDeleteAction} ) => {
     const columns = PostsTableColumns(
         { 
             posts: posts, 
-            onEditAction: onEditAction, 
-            onDeleteAction: onDeleteAction 
+            onEditAction : (post) => openModal('Edit Post', post, handleEditPost),
+            onDeleteAction : (postId) => openModal('Delete Post', postId, handleDeletePost)
         }
     )
 
@@ -47,16 +61,24 @@ const PostsTable = ( {posts, onAddAction, onEditAction, onDeleteAction} ) => {
                 data={tableData}
                 options={options}
             />
+            <PostModal 
+                open = {modalOpen} 
+                action = {modalData.modalTitle} 
+                postData = {selectedPost}
+                handleConfirmAction = {handleConfirmModal}
+                handleClose = {() => setModalOpen(false)} 
+                isDeleteSelected={isDeleteSelected} 
+            />
         </>
     )
 
 }
 
-PostsTable.propTypes = {
-    posts: PropTypes.array.isRequired,
-    onAddAction: PropTypes.func.isRequired,
-    onEditAction: PropTypes.func.isRequired,
-    onDeleteAction: PropTypes.func.isRequired
-}
+// PostsTable.propTypes = {
+//     posts: PropTypes.array.isRequired,
+//     onAddAction: PropTypes.func.isRequired,
+//     onEditAction: PropTypes.func.isRequired,
+//     onDeleteAction: PropTypes.func.isRequired
+// }
 
 export default PostsTable
