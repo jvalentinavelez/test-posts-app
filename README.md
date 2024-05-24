@@ -6,6 +6,10 @@ Welcome to the Posts App, an application designed to help you manage users posts
 
 <img src="https://github.com/jvalentinavelez/test-posts-app/assets/55290812/f77a9f9c-5262-478c-af92-496667351a3c" width="700">
 
+## Public URL
+
+https://postsapp-technicaltest.netlify.app/
+
 ## Features
 
 You can perform actions on a post. Each action will display a modal, which will either send the information when Confirm is pressed or cancel the action when Cancel is pressed.
@@ -24,8 +28,6 @@ You can perform actions on a post. Each action will display a modal, which will 
 <img src="https://github.com/jvalentinavelez/test-posts-app/assets/55290812/5581346d-b550-4bb8-a812-410005156702" width="500">
 
 Additionally, you can search an specific post, filter by userId and Id columns, display the columns of interest, and view the number of pages at the bottom and customize it to your liking.
-
-## Public URL
 
 ## Installation
 
