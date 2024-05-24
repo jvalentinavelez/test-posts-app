@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState } from 'react';
 import { usePosts } from '../context/PostsContext';
 
 const useModal = () => {
@@ -38,6 +38,7 @@ const useModal = () => {
 
   return {
     modalOpen, 
+    setModalOpen,
     modalData, 
     selectedPost, 
     isDeleteSelected, 

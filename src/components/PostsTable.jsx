@@ -4,10 +4,10 @@ import AddIcon from '@mui/icons-material/Add';
 import PropTypes from 'prop-types'
 import { PostsTableColumns } from "./PostsTableColumns";
 import { usePosts } from '../context/PostsContext';
-import PostModal from "./PostModal";
+import { PostModal } from "./PostModal";
 import useModal from "../hooks/useModal";
 
-const PostsTable = ( ) => {
+export const PostsTable = ( ) => {
 
       const {
         posts,
@@ -77,5 +77,3 @@ const PostsTable = ( ) => {
 //     onEditAction: PropTypes.func.isRequired,
 //     onDeleteAction: PropTypes.func.isRequired
 // }
-
-export default PostsTable

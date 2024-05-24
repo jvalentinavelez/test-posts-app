@@ -22,7 +22,6 @@ export const PostsProvider = ({ children }) => {
     const handleAddPost = useCallback( async (newPost) => {
         try {
             const addedPost = await createPost(newPost);
-            console.log(addedPost)
             setPosts(prevPosts => [...prevPosts, addedPost]);
         } catch (error) {
             console.error('There was an error creating post: ', error);

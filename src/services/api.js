@@ -33,7 +33,7 @@ export const createPost = async(postData) => {
             
         })
         const data = await response.json();
-        console.log(data)
+        console.log('Created', data)
         return data;
     } catch (error) {
         console.log('There was an error creating the post: ', error);
@@ -52,6 +52,7 @@ export const editPost = async(postId, postData) => {
             
         })
         const data = await response.json();
+        console.log('Edited', data)
         return data;
     } catch (error) {
         console.log('There was an error updating the post: ', error);
@@ -65,6 +66,7 @@ export const deletePost = async(postId) => {
             method: 'DELETE'
         })
         const data = await response.json();
+        console.log('Deleted postId: ', postId)
         return data;
     } catch (error) {
         console.log('There was an error deleting the post: ', error);

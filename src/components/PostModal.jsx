@@ -14,7 +14,7 @@ const style = {
   borderRadius: '10px'
 };
 
-const PostModal = ({ open, handleClose, action, postData, handleConfirmAction, isDeleteSelected }) => {
+export const PostModal = ({ open, handleClose, action, postData, handleConfirmAction, isDeleteSelected }) => {
 
   const [formPostData, setFormPostData] = useState({
     userId: '',
@@ -75,4 +75,3 @@ const PostModal = ({ open, handleClose, action, postData, handleConfirmAction, i
   );
 };
 
-export default PostModal
