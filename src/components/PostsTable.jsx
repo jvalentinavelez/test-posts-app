@@ -1,11 +1,13 @@
 import MUIDataTable from "mui-datatables";
+import { ThemeProvider, createTheme } from "@mui/material";
 import IconButton from '@mui/material/IconButton';
 import AddIcon from '@mui/icons-material/Add';
-import { PostsTableColumns } from "./PostsTableColumns";
+
 import { usePosts } from '../context/PostsContext';
-import { PostModal } from "./PostModal";
 import useModal from "../hooks/useModal";
-import { ThemeProvider, createTheme } from "@mui/material";
+
+import { PostsTableColumns } from "./PostsTableColumns";
+import { PostModal } from "./PostModal";
 
 export const PostsTable = ( ) => {
 
@@ -16,7 +18,15 @@ export const PostsTable = ( ) => {
         handleDeletePost,        
     } = usePosts();
 
-    const { modalOpen, setModalOpen, selectedPost, modalData, isDeleteSelected, openModal, handleConfirmModal } = useModal();
+    const { 
+        modalOpen, 
+        setModalOpen, 
+        selectedPost, 
+        modalData, 
+        isDeleteSelected, 
+        openModal, 
+        handleConfirmModal 
+    } = useModal();
 
 
     const tableData = posts.map(post => ({
@@ -35,9 +45,9 @@ export const PostsTable = ( ) => {
         rowsPerPageOptions: [10, 20, 50, 100],
         customToolbar: () => (
             <IconButton 
-                aria-label="edit" 
-                onClick={ 
-                        () => openModal('Create Post', { userId: 1, title: '', body: '' }, handleAddPost)                         
+                aria-label = "edit" 
+                onClick = { 
+                    () => openModal('Create Post', { userId: 1, title: '', body: '' }, handleAddPost)                         
                 }
             >
                 <AddIcon />
@@ -89,9 +99,9 @@ export const PostsTable = ( ) => {
             },
             MuiTableFooter: {
                 styleOverrides:{
-                root: {
-                    backgroundColor: "#A9CCE3"
-                }
+                    root: {
+                        backgroundColor: "#A9CCE3"
+                    }
                 }
             }, 
         },     

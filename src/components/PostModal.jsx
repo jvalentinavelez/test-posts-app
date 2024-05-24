@@ -1,8 +1,7 @@
-import { Modal, Box, Typography, Button, TextField, Grid } from '@mui/material';
 import { useEffect, useState } from 'react';
-import { PostForm } from './PostForm';
 import PropTypes from 'prop-types';
-
+import { Modal, Box, Typography, Button } from '@mui/material';
+import { PostForm } from './PostForm';
 
 const style = {
   position: 'absolute',

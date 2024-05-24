@@ -4,9 +4,8 @@ import EditIcon from '@mui/icons-material/Edit';
 
 export const PostsTableColumns = ({posts, onEditAction, onDeleteAction}) => {
 
-    const columns = 
-    
-        [
+const columns = 
+    [
         {
             name: "userId",
             label: "Userid",
@@ -87,4 +86,5 @@ export const PostsTableColumns = ({posts, onEditAction, onDeleteAction}) => {
     ]
     
     return columns;
+    
 }
