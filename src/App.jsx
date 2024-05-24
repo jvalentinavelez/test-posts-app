@@ -1,11 +1,14 @@
 import { PostsTable } from "./components";
-import { PostsProvider } from "./hooks/PostsContext";
+import { ModalProvider } from "./context/ModalContext";
+import { PostsProvider } from "./context/PostsContext";
 
 export const App = () => {
 
     return (
         <PostsProvider>
-            <PostsTable />
+            <ModalProvider>
+                <PostsTable />
+            </ModalProvider>
         </PostsProvider>
     )
 

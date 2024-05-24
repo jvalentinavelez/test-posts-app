@@ -8,12 +8,7 @@ export const usePosts = () => useContext(PostsContext);
 export const PostsProvider = ({ children }) => {
     //posts states
     const [posts, setPosts] = useState([]);
-    const [selectedPost, setSelectedPost] = useState({})
     const [isLoading, setIsLoading] = useState( true );
-    // modal states
-    const [modalOpen, setModalOpen] = useState(false);
-    const [modalData, setModalData] = useState({ modalTitle: '', confirmModalAction: () => {} });
-    const [isDeleteSelected, setDeleteSelected] = useState(false); 
 
     useEffect( () => {
         const fetchPosts = async() => {
@@ -27,6 +22,7 @@ export const PostsProvider = ({ children }) => {
     const handleAddPost = useCallback( async (newPost) => {
         try {
             const addedPost = await createPost(newPost);
+            console.log(addedPost)
             setPosts(prevPosts => [...prevPosts, addedPost]);
         } catch (error) {
             console.error('There was an error creating post: ', error);
@@ -53,47 +49,47 @@ export const PostsProvider = ({ children }) => {
         }
     };
 
-    const openModal = (modalTitle, selectedPost, confirmModalAction) => {
-        if (modalTitle === 'Delete Post') { 
-            setDeleteSelected(true);
-            if (selectedPost) {
-                const postToDelete = posts.find(post => post.id === selectedPost);
-                setSelectedPost(postToDelete);
-            } else {
-                setSelectedPost({});
-            }
-        } else {
-            setDeleteSelected(false);
-            setSelectedPost(selectedPost);
-        }
-        setModalData({ modalTitle, confirmModalAction });
-        setModalOpen(true);
-    };
+    // const openModal = (modalTitle, selectedPost, confirmModalAction) => {
+    //     if (modalTitle === 'Delete Post') { 
+    //         setDeleteSelected(true);
+    //         if (selectedPost) {
+    //             const postToDelete = posts.find(post => post.id === selectedPost);
+    //             setSelectedPost(postToDelete);
+    //         } else {
+    //             setSelectedPost({});
+    //         }
+    //     } else {
+    //         setDeleteSelected(false);
+    //         setSelectedPost(selectedPost);
+    //     }
+    //     setModalData({ modalTitle, confirmModalAction });
+    //     setModalOpen(true);
+    // };
 
 
-    const handleConfirmModal = (updatedData) => {   
-        if (modalData.confirmModalAction === handleAddPost) {
-            modalData.confirmModalAction(updatedData);
-        } else {
-            modalData.confirmModalAction(selectedPost.id, updatedData);
-        }
-        setModalOpen(false);
-    };
+    // const handleConfirmModal = (updatedData) => {   
+    //     if (modalData.confirmModalAction === handleAddPost) {
+    //         modalData.confirmModalAction(updatedData);
+    //     } else {
+    //         modalData.confirmModalAction(selectedPost.id, updatedData);
+    //     }
+    //     setModalOpen(false);
+    // };
 
   return (
     <PostsContext.Provider value={{
         posts,
         isLoading,
-        selectedPost,
         handleAddPost,
         handleEditPost,
-        handleDeletePost,        
-        modalOpen,
-        setModalOpen,
-        openModal,
-        modalData,
-        isDeleteSelected,
-        handleConfirmModal
+        handleDeletePost,
+        // selectedPost,        
+        // modalOpen,
+        // setModalOpen,
+        // openModal,
+        // modalData,
+        // isDeleteSelected,
+        // handleConfirmModal
     }}>
       {children}
     </PostsContext.Provider>

@@ -3,24 +3,21 @@ import IconButton from '@mui/material/IconButton';
 import AddIcon from '@mui/icons-material/Add';
 import PropTypes from 'prop-types'
 import { PostsTableColumns } from "./PostsTableColumns";
-import { usePosts } from '../hooks/PostsContext';
+import { usePosts } from '../context/PostsContext';
+import { useModal } from '../context/ModalContext';
 import PostModal from "./PostModal";
 
 const PostsTable = ( ) => {
 
       const {
         posts,
-        selectedPost,
         handleAddPost,
         handleEditPost,
         handleDeletePost,        
-        modalOpen,
-        setModalOpen,
-        openModal,
-        modalData,
-        isDeleteSelected,
-        handleConfirmModal
     } = usePosts();
+
+    const { modalOpen, setModalOpen, selectedPost, modalData, isDeleteSelected, openModal, handleConfirmModal } = useModal();
+
 
     const tableData = posts.map(post => ({
         userId: post.userId, 
