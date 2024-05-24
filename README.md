@@ -24,9 +24,23 @@ Follow the next steps to set up the project
    npm install --save prop-types
    ```
 
-5. Testing with Jest + React Testing Library
+## Testing with Jest + React Testing Library
+
+1. Install React testing library dependencies and Jest dependecies
 
    ```sh
    npm install --save-dev jest babel-jest @babel/preset-env @babel/preset-react
    npm install --save-dev @testing-library/react @types/jest jest-environment-jsdom
    ```
+
+2. Configure Jest by adding files jest.config.cjs and jest.setup.cjs
+
+3. Integrate Jest with ESLint
+
+   ```sh
+   npm install --save-dev eslint-plugin-jest
+   ```
+
+4. Add testing scripts
+
+5. For a more detailed explanation: https://dev.to/ivadyhabimana/setup-jest-and-react-testing-library-in-a-react-project-a-step-by-step-guide-1mf0
